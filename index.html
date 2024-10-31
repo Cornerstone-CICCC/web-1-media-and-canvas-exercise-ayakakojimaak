@@ -1,23 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Media Exercise</title>
-</head>
-<body>
-  <div class="container">
-    <!-- AUDIO HTML GOES HERE -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media Exercise</title>
+    <style>
+      body {
+        background: #146e00 url("assets/images/background.jpg") no-repeat left bottom / cover content-box;
+      }
+      video {
+        object-fit: cover;
+      }
+      canvas {
+        background-color: lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- AUDIO HTML GOES HERE -->
+      <audio muted loop controls>
+        <source src="assets/audio/piano.wav" />
+        Your browser does not support the audio tag.
+      </audio>
 
-    <!-- VIDEO HTML GOES HERE -->
+      <!-- VIDEO HTML GOES HERE -->
+      <video width="300" height="165" poster="assets/images/poster.jpg" muted controls>
+        <source src="assets/video/ocean.mp4" />
+        Your browser does not support the video tag.
+      </video>
 
-    <!-- IMAGE MAP HTML GOES HERE-->
+      <!-- IMAGE MAP HTML GOES HERE-->
+      <img src="assets/images/fruit_table.jpg" usemap="#image-map" />
+      <map name="image-map">
+        <area
+          target="_blank"
+          alt="lavender flowers"
+          title="lavender flowers"
+          href="https://en.wikipedia.org/wiki/Lavandula"
+          coords="6,57,258,469"
+          shape="rect" />
+        <area
+          target="_blank"
+          alt="coffee"
+          title="coffee"
+          href="https://en.wikipedia.org/wiki/Coffee"
+          coords="365,175,75"
+          shape="circle" />
+        <area
+          target="_blank"
+          alt="orange"
+          title="orange"
+          href="https://en.wikipedia.org/wiki/Orange_(fruit)"
+          coords="499,283,299,525"
+          shape="rect" />
+      </map>
 
-    <!-- CANVAS HTML GOES HERE -->
-  </div>
+      <!-- CANVAS HTML GOES HERE -->
+      <canvas id="myCanvas" width="500" height="500"></canvas>
+    </div>
 
-  <script>
-    /* CANVAS JAVASCRIPT GOES HERE */
-  </script>
-</body>
+    <script>
+      function drawLine(ctx, startX, startY, endX, endY, color) {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 10;
+
+        ctx.beginPath();
+        ctx.moveTo(startX, startX);
+        ctx.lineTo(endY, endX);
+        ctx.stroke();
+      }
+      function drawRect() {
+        const canvas = document.getElementById("myCanvas");
+        if (canvas.getContext) {
+          const ctx = canvas.getContext("2d");
+          drawLine(ctx, 100, 100, 100, 400, "red");
+          drawLine(ctx, 100, 400, 400, 100, "blue");
+          drawLine(ctx, 400, 100, 100, 400, "green");
+          drawLine(ctx, 400, 100, 400, 100, "yellow");
+        }
+      }
+      drawRect();
+    </script>
+  </body>
 </html>
